@@ -9,58 +9,58 @@ on:
       - main
 
 jobs:
-  linux:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Clone Source of TDEngine
-        run: |
-          git clone https://github.com/taosdata/TDengine.git --depth 1
-      - name: Install Dep
-        run: sudo apt-get install -y gcc cmake build-essential git libssl-dev libgflags2.2 libgflags-dev
-      - name: Setup Go 1.21.x
-        uses: actions/setup-go@v4
-        with:
-          # Semantic version range syntax or exact version of Go
-          go-version: '1.21.x'
-      - name: Setup Rust toolchain
-        uses: actions-rust-lang/setup-rust-toolchain@v1
-      - name: Build TDEngine
-        run: |
-          cd TDengine
-          mkdir debug
-          cd debug
-          cmake .. -DBUILD_TOOLS=false -DBUILD_CONTRIB=true
-          make
-      - name: Upload Client Library
-        uses: actions/upload-artifact@v2
-        with:
-          name: libtaos.so
-          path: TDengine/debug/build/lib/libtaos.so*
+  # linux:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #     - name: Clone Source of TDEngine
+  #       run: |
+  #         git clone https://github.com/taosdata/TDengine.git --depth 1
+  #     - name: Install Dep
+  #       run: sudo apt-get install -y gcc cmake build-essential git libssl-dev libgflags2.2 libgflags-dev
+  #     - name: Setup Go 1.21.x
+  #       uses: actions/setup-go@v4
+  #       with:
+  #         # Semantic version range syntax or exact version of Go
+  #         go-version: '1.21.x'
+  #     - name: Setup Rust toolchain
+  #       uses: actions-rust-lang/setup-rust-toolchain@v1
+  #     - name: Build TDEngine
+  #       run: |
+  #         cd TDengine
+  #         mkdir debug
+  #         cd debug
+  #         cmake .. -DBUILD_TOOLS=false -DBUILD_CONTRIB=true
+  #         make
+  #     - name: Upload Client Library
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         name: libtaos.so
+  #         path: TDengine/debug/build/lib/libtaos.so*
 
   windows:
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Clone Source of TDEngine
         run: |
           git clone https://github.com/taosdata/TDengine.git --depth 1
-      - name: Setup Go 1.21.x
-        uses: actions/setup-go@v4
-        with:
-          # Semantic version range syntax or exact version of Go
-          go-version: '1.21.x'
-      - name: Setup Rust toolchain
-        uses: actions-rust-lang/setup-rust-toolchain@v1
+      # - name: Setup Go 1.21.x
+      #   uses: actions/setup-go@v4
+      #   with:
+      #     # Semantic version range syntax or exact version of Go
+      #     go-version: '1.21.x'
+      # - name: Setup Rust toolchain
+      #   uses: actions-rust-lang/setup-rust-toolchain@v1
       - name: Build TDEngine
         run: |
           cd TDengine
           mkdir debug && cd debug
           CMD.exe /c call "c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
           cmake .. -G "NMake Makefiles"
-          nmake
+          nmake.exe
       - name: Upload Client Library
         uses: actions/upload-artifact@v2
         with:
