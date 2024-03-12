@@ -1,0 +1,28 @@
+name: taos-driver-build
+
+# set run name for the tags of TDEngine
+#run-name:
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Clone Source of TDEngine
+        run: |
+          git clone https://github.com/taosdata/TDengine.git
+      - name: Install Dep
+        run: sudo apt-get install -y gcc cmake build-essential git libssl-dev libgflags2.2 libgflags-dev
+      - name: Build TDEngine
+        run: |
+          cd TDengine
+          mkdir debug
+          cd debug
+          cmake .. -DBUILD_TOOLS=false -DBUILD_CONTRIB=trueD
+          make
