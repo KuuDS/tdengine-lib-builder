@@ -26,3 +26,8 @@ jobs:
           cd debug
           cmake .. -DBUILD_TOOLS=false -DBUILD_CONTRIB=true
           make
+      - name: Upload libtaos.so
+        uses: actions/upload-artifact@v2
+        with:
+          name: libtaos.so
+          path: TDengine/debug/build/lib/libtaos.so
