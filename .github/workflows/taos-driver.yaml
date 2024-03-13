@@ -54,14 +54,12 @@ jobs:
       #     go-version: '1.21.x'
       # - name: Setup Rust toolchain
       #   uses: actions-rust-lang/setup-rust-toolchain@v1
-      - name: Build prepare
-        shell: cmd
-        run: ${{ '"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64' }}
       - name: Build TDEngine
         shell: cmd
         run: |
           cd TDengine
           mkdir debug && cd debug
+          ${{ '"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64' }}
           cmake .. -G "NMake Makefiles"
           nmake.exe
       - name: Upload Client Library
