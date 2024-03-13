@@ -70,8 +70,6 @@ jobs:
         include:
           - arch: amd64
             alias: amd64
-          - arch: arm64
-            alias: amd64_arm64
     runs-on: windows-2022
     steps:
       - name: Checkout
