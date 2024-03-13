@@ -112,7 +112,7 @@ jobs:
         run: brew install argp-standalone gflags pkgconfig
       - name: Build TDEngine
         run: |
-          cp patch/zlib_CMakeLists.txt TDengine/cmake/zlib_CMakeLists.txt
+          cp patch/zlib_CMakeLists.txt.in TDengine/cmake/zlib_CMakeLists.txt.in
           cd TDengine
           sed -i ''
           mkdir debug && cd debug
