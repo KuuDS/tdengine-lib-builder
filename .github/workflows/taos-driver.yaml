@@ -66,6 +66,7 @@ jobs:
         with:
           arch: ${{ matrix.arch}}
       - name: Build TDEngine For Windows
+        shell: cmd
         run: |
           cd TDengine
           mkdir debug && cd debug
