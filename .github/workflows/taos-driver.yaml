@@ -114,9 +114,9 @@ jobs:
         run: |
           cp -a patch/macos/* TDengine/
           ls TDengine
-          export PATH="/opt/homebrew/opt/llvm@13/bin:$PATH"
-          export LDFLAGS="-L/opt/homebrew/opt/llvm@13/lib"
-          export CPPFLAGS="-I/opt/homebrew/opt/llvm@13/include"
+          export PATH="$(brew --prefix llvm@13)/bin:$PATH"
+          export LDFLAGS="-L$(brew --prefix llvm@13)/lib"
+          export CPPFLAGS="-I$(brew --prefix llvm@13)/include"
           cd TDengine
           mkdir debug && cd debug
           cmake .. -DCMAKE_TOOLCHAIN_FILE=../darwin.toolchain.cmake -DBUILD_TOOLS=false -DBUILD_CONTRIB=false && make
