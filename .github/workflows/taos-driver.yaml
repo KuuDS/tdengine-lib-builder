@@ -114,6 +114,7 @@ jobs:
           export PATH="/opt/homebrew/opt/llvm@13/bin:$PATH"
           export LDFLAGS="-L/opt/homebrew/opt/llvm@13/lib"
           export CPPFLAGS="-I/opt/homebrew/opt/llvm@13/include"
+          CD TDengine
           mkdir debug
           cd debug
           cmake -DCMAKE_TOOLCHAIN_FILE=../darwin.toolchain.cmake .. &&  make
