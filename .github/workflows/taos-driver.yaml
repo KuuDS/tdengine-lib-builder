@@ -107,7 +107,7 @@ jobs:
             --depth 1 \
             -b ${{ github.event.inputs.tdengine-refs }}
       - name: Install Dependencies
-        run: brew install argp-standalone gflags pkgconfig
+        run: brew install argp-standalone gflags pkgconfig llvm@13
       - name: Build TDEngine
         run: |
           cp patch/zlib_CMakeLists.txt.in TDengine/cmake/zlib_CMakeLists.txt.in
