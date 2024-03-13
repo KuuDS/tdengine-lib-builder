@@ -110,7 +110,7 @@ jobs:
         run: |
           cd TDengine
           mkdir debug && cd debug
-          cmake .. -DBUILD_TOOLS=false
+          cmake .. -DBUILD_TOOLS=false -DBUILD_CONTRIB=false
           cmake --build .
       - name: Upload Client Library
         uses: actions/upload-artifact@v2
