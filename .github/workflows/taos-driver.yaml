@@ -116,7 +116,7 @@ jobs:
           export CPPFLAGS="-I/opt/homebrew/opt/llvm@13/include"
           cd TDengine
           mkdir debug && cd debug
-          cmake .. -DCMAKE_TOOLCHAIN_FILE=../darwin.toolchain.cmake BUILD_TOOLS=false -DBUILD_CONTRIB=false && make
+          cmake .. -DCMAKE_TOOLCHAIN_FILE=../darwin.toolchain.cmake -DBUILD_TOOLS=false -DBUILD_CONTRIB=false && make
       - name: Upload Client Library
         uses: actions/upload-artifact@v2
         with:
