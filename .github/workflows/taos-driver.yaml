@@ -59,9 +59,9 @@ jobs:
         run: |
           cd TDengine
           mkdir debug && cd debug
-          ${{ '"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64' }}
+          "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
           cmake .. -G "NMake Makefiles"
-          nmake.exe
+          NMake
       - name: Upload Client Library
         uses: actions/upload-artifact@v2
         with:
