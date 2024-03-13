@@ -116,7 +116,7 @@ jobs:
           cd TDengine
           sed -i ''
           mkdir debug && cd debug
-          cmake .. -DBUILD_TOOLS=false -DBUILD_CONTRIB=false
+          cmake .. -DBUILD_TOOLS=false -DBUILD_CONTRIB=false -DCOMPILER_SUPPORTS_CXX13=true
           cmake --build .
       - name: Upload Client Library
         uses: actions/upload-artifact@v2
