@@ -93,8 +93,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: macos-13
-            arch: amd64
+          # - os: macos-13
+          #   arch: amd64
           - os: macos-14
             arch: arm64
     runs-on: ${{ matrix.os }}
