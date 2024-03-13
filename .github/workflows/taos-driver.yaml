@@ -30,7 +30,7 @@ jobs:
             --depth 1 \
             -b ${{ github.event.inputs.tdengine-refs }}
       - name: Install Dependencies for Linux
-        run: apt-get install -y gcc cmake build-essential git libssl-dev libgflags2.2 libgflags-dev
+        run: sudo apt-get install -y gcc cmake build-essential git libssl-dev libgflags2.2 libgflags-dev
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
