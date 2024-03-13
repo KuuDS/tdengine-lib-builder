@@ -10,9 +10,22 @@ on:
         description: 'TDEngine Refs to Build'
         required: true
         default: 'main'
+      windows:
+        description: 'Build for Windows'
+        required: true
+        default: 'false'
+      linux:
+        description: 'Build for Linux'
+        required: true
+        default: 'false'
+      macos:
+        description: 'Build for macOS'
+        required: true
+        default: 'false'
 
 jobs:
   linux:
+    if: ${{ github.event.inputs.linux == 'true' }}
     strategy:
       matrix:
         include:
@@ -51,6 +64,7 @@ jobs:
           path: TDengine/debug/build/lib/libtaos.so*
 
   windows:
+    if: ${{ github.event.inputs.windows == 'true' }}
     strategy:
       matrix:
         arch: [amd64, arm64]
@@ -79,6 +93,7 @@ jobs:
           path: TDengine/debug/build/lib/taos.dll*
 
   macos:
+    if: ${{ github.event.inputs.macos == 'true' }}
     strategy:
       matrix:
         include:
