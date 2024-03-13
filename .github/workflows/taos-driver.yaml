@@ -56,7 +56,7 @@ jobs:
       #   uses: actions-rust-lang/setup-rust-toolchain@v1
       - name: Build prepare
         shell: cmd
-        run: ${{ '"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" && amd64' }}
+        run: ${{ '"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64' }}
       - name: Build TDEngine
         shell: cmd
         run: |
