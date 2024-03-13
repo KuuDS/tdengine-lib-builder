@@ -30,9 +30,7 @@ jobs:
       matrix:
         include:
           - arch: amd64
-            alias: amd64
           # - arch: arm64
-          #   alias: aarch64
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -49,7 +47,7 @@ jobs:
           cd TDengine
           mkdir debug
           cd debug
-          cmake .. -DCPUTYPE=${{ matrix.alias }} -DBUILD_TOOLS=false -DBUILD_CONTRIB=true
+          cmake .. -DBUILD_TOOLS=false -DBUILD_CONTRIB=true
           make
       - name: Upload Client Library
         uses: actions/upload-artifact@v2
