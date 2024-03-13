@@ -112,7 +112,6 @@ jobs:
         run: |
           cp patch/zlib_CMakeLists.txt.in TDengine/cmake/zlib_CMakeLists.txt.in
           cd TDengine
-          sed -i ''
           mkdir debug && cd debug
           cmake .. -DBUILD_TOOLS=false -DBUILD_CONTRIB=false -DCOMPILER_SUPPORTS_CXX13=true
           cmake --build .
