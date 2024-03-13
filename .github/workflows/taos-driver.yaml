@@ -109,13 +109,14 @@ jobs:
         run: brew install argp-standalone gflags pkgconfig llvm@13
       - name: Build TDEngine
         run: |
-          cp -r patch/* TDengine/
+          cp -a patch/macos/* TDengine/
+          ls TDengine 
           export PATH="/opt/homebrew/opt/llvm@13/bin:$PATH"
           export LDFLAGS="-L/opt/homebrew/opt/llvm@13/lib"
           export CPPFLAGS="-I/opt/homebrew/opt/llvm@13/include"
           cd TDengine
           mkdir debug && cd debug
-          cmake .. -DCMAKE_TOOLCHAIN_FILE=../darwin.toolchain.cmake BUILD_TOOLS=false -DBUILD_CONTRIB=false && make
+          cmake .. -DCMAKE_TOOLCHAIN_FILE=../darwin.toolchain.cmake -DBUILD_TOOLS=false -DBUILD_CONTRIB=false && make
       - name: Upload Client Library
         uses: actions/upload-artifact@v2
         with:
