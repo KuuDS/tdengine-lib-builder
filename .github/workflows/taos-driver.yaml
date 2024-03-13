@@ -12,16 +12,19 @@ on:
         default: 'main'
       windows:
         description: 'Build for Windows'
+        type: boolean
         required: true
-        default: 'false'
+        default: false
       linux:
         description: 'Build for Linux'
+        type: boolean
         required: true
-        default: 'false'
+        default: false
       macos:
         description: 'Build for macOS'
+        type: boolean
         required: true
-        default: 'false'
+        default: false
 
 jobs:
   linux:
@@ -110,7 +113,7 @@ jobs:
       - name: Build TDEngine
         run: |
           cp -a patch/macos/* TDengine/
-          ls TDengine 
+          ls TDengine
           export PATH="/opt/homebrew/opt/llvm@13/bin:$PATH"
           export LDFLAGS="-L/opt/homebrew/opt/llvm@13/lib"
           export CPPFLAGS="-I/opt/homebrew/opt/llvm@13/include"
