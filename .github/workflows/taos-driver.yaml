@@ -67,7 +67,11 @@ jobs:
     if: ${{ github.event.inputs.windows == 'true' }}
     strategy:
       matrix:
-        arch: [amd64, arm64]
+        include:
+          - arch: amd64
+            alias: amd64
+          - arch: arm64
+            alias: amd64_arm64
     runs-on: windows-2022
     steps:
       - name: Checkout
@@ -78,7 +82,7 @@ jobs:
       - name: Configure Builder for Windows
         uses: ilammy/msvc-dev-cmd@v1
         with:
-          arch: ${{ matrix.arch}}
+          arch: ${{ matrix.alias }}
       - name: Build TDEngine For Windows
         shell: cmd
         run: |
@@ -101,7 +105,7 @@ jobs:
             arch: amd64
           - os: macos-13-xlarge
             arch: arm64
-    runs-on: ${matrix.os}
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
