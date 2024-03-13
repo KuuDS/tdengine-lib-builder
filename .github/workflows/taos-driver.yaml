@@ -70,7 +70,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Clone Source of TDEngine
         run: |
-          git clone https://github.com/taosdata/TDengine.git --depth 1
+          git clone https://github.com/taosdata/TDengine.git \
+            --depth 1 \
+            -b ${{ github.event.inputs.tdengine-refs }}
       - name: Configure Builder for Windows
         uses: ilammy/msvc-dev-cmd@v1
         with:
@@ -103,12 +105,16 @@ jobs:
         uses: actions/checkout@v4
       - name: Clone Source of TDEngine
         run: |
-          git clone https://github.com/taosdata/TDengine.git --depth 1
+          git clone https://github.com/taosdata/TDengine.git \
+            --depth 1 \
+            -b ${{ github.event.inputs.tdengine-refs }}
       - name: Install Dependencies
         run: brew install argp-standalone gflags pkgconfig
       - name: Build TDEngine
         run: |
+          cp patch/zlib_CMakeLists.txt TDengine/cmake/zlib_CMakeLists.txt
           cd TDengine
+          sed -i ''
           mkdir debug && cd debug
           cmake .. -DBUILD_TOOLS=false -DBUILD_CONTRIB=false
           cmake --build .
