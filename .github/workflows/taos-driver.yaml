@@ -61,20 +61,19 @@ jobs:
       matrix:
         include:
           - arch: amd64
-            alias: amd64
     runs-on: windows-2022
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Clone Source of TDEngine
         run: |
-          git clone https://github.com/taosdata/TDengine.git \
-            --depth 1 \
+          git clone https://github.com/taosdata/TDengine.git `
+            --depth 1 `
             -b ${{ github.event.inputs.tdengine-refs }}
       - name: Configure Builder for Windows
         uses: ilammy/msvc-dev-cmd@v1
         with:
-          arch: ${{ matrix.alias }}
+          arch: ${{ matrix.arch }}
       - name: Build TDEngine
         shell: cmd
         run: |
