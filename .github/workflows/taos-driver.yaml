@@ -75,7 +75,7 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: ${{ matrix.alias }}
-      - name: Build TDEngine For Windows
+      - name: Build TDEngine
         shell: cmd
         run: |
           cd TDengine
@@ -104,9 +104,9 @@ jobs:
       - name: Clone Source of TDEngine
         run: |
           git clone https://github.com/taosdata/TDengine.git --depth 1
-      - name: Install Dependencies for MacOS
+      - name: Install Dependencies
         run: brew install argp-standalone gflags pkgconfig
-      - name: Build TDEngine For Windows
+      - name: Build TDEngine
         run: |
           cd TDengine
           mkdir debug && cd debug
