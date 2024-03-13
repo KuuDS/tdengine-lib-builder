@@ -111,7 +111,12 @@ jobs:
       - name: Build TDEngine
         run: |
           cp -r patch/* TDengine/
-          sh -c sh ./build.sh
+          export PATH="/opt/homebrew/opt/llvm@13/bin:$PATH"
+          export LDFLAGS="-L/opt/homebrew/opt/llvm@13/lib"
+          export CPPFLAGS="-I/opt/homebrew/opt/llvm@13/include"
+          mkdir debug
+          cd debug
+          cmake -DCMAKE_TOOLCHAIN_FILE=../darwin.toolchain.cmake .. &&  make
       - name: Upload Client Library
         uses: actions/upload-artifact@v2
         with:
