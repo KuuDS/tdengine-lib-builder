@@ -110,11 +110,8 @@ jobs:
         run: brew install argp-standalone gflags pkgconfig llvm@13
       - name: Build TDEngine
         run: |
-          cp patch/zlib_CMakeLists.txt.in TDengine/cmake/zlib_CMakeLists.txt.in
-          cd TDengine
-          mkdir debug && cd debug
-          cmake .. -DBUILD_TOOLS=false -DBUILD_CONTRIB=false -DCOMPILER_SUPPORTS_CXX13=true
-          cmake --build .
+          cp patch/* TDengine/
+          sh -c sh ./build.sh
       - name: Upload Client Library
         uses: actions/upload-artifact@v2
         with:
