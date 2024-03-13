@@ -31,8 +31,8 @@ jobs:
         include:
           - arch: amd64
             alias: amd64
-          - arch: arm64
-            alias: aarch64
+          # - arch: arm64
+          #   alias: aarch64
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
