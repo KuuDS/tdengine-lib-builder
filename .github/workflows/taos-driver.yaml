@@ -111,6 +111,7 @@ jobs:
       - name: Build TDEngine
         run: |
           cp -a patch/* TDengine/
+          ls TDengine 
           export PATH="/opt/homebrew/opt/llvm@13/bin:$PATH"
           export LDFLAGS="-L/opt/homebrew/opt/llvm@13/lib"
           export CPPFLAGS="-I/opt/homebrew/opt/llvm@13/include"
